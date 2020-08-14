@@ -9,7 +9,7 @@ AM_LDFLAGS = \
 _pympibind.c: $(srcdir)/build.py _mpibind_preproc.h
 	$(PYTHON) $<
 
-# Flux LICENSE
+# CREDIT TO THE FLUX TEAM FOR prepoc rule
 _mpibind_preproc.h: _mpibind_clean.h
 	$(CC) -E  '-D__attribute__(...)=' _mpibind_clean.h\
 	  | sed -e '/^# [0-9]*.*/d' > $@
@@ -26,10 +26,8 @@ mpibindpyso_PYTHON = __init__.py
 nodist_mpibindbindinginclude_HEADERS = _mpibind_preproc.h
 nodist__pympibind_la_SOURCES = _pympibind.c
 
-common_libs = $(top_builddir)/src/libmpibind.la \
+_pympibind_la_LIBADD = $(top_builddir)/src/libmpibind.la \
 		  $(PYTHON_LDFLAGS)
-
-_pympibind_la_LIBADD = $(common_libs)
 
 EXTRA_DIST=build.py make_clean_header.py
 
@@ -40,7 +38,7 @@ clean-local:
 
 # creates a symbolic link _pympibind.so to 
 # _pympibind.so in _mpibind/.libs so that it can be imported in mpibind/wrapper
-# Flux LICENSE
+# CREDIT TO THE FLUX TEAM FOR lib-copy
 
 .PHONY: lib-copy
 
