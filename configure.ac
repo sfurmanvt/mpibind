@@ -88,6 +88,7 @@ AC_CONFIG_FILES([
  Makefile
  src/Makefile
  test-suite/Makefile
+ slurm/Makefile
  flux/Makefile
  etc/Makefile
  etc/mpibind.pc
